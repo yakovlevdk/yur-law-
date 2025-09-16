@@ -16,9 +16,9 @@ declare global {
 
 // Email configuration
 const emailTransporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'yandex',
   auth: {
-    user: process.env.EMAIL_USER || 'your-email@gmail.com',
+    user: process.env.EMAIL_USER || 'your-email@yandex.ru',
     pass: process.env.EMAIL_PASS || 'your-app-password'
   }
 });
