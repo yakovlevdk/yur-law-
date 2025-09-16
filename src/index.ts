@@ -11,6 +11,11 @@ dotenv.config();
 // Telegram Bot Token
 const TELEGRAM_BOT_TOKEN = '8422331183:AAFU0ONC0ETWiw74MplmIxMeFZGXloIxDuU';
 
+// Extend global interface for auth codes
+declare global {
+  var authCodes: Map<string, { telegramId: string; expiresAt: Date }> | undefined;
+}
+
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
@@ -256,7 +261,7 @@ app.post('/api/auth/request-code', async (req, res) => {
       expiresAt
     });
 
-    (global as any).authCodes = authCodes;
+    global.authCodes = authCodes;
 
     // Send code to Telegram
     try {
