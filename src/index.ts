@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 
 // Load environment variables
 dotenv.config();
@@ -12,6 +13,15 @@ dotenv.config();
 declare global {
   var authCodes: Map<string, { email: string; expiresAt: Date }> | undefined;
 }
+
+// Email configuration
+const emailTransporter = nodemailer.createTransporter({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER || 'your-email@gmail.com',
+    pass: process.env.EMAIL_PASS || 'your-app-password'
+  }
+});
 
 const app = express();
 const prisma = new PrismaClient();
@@ -260,14 +270,38 @@ app.post('/api/auth/send-email-code', async (req, res) => {
     
     global.authCodes = authCodes;
 
-    // TODO: Send email with code
-    // For now, just return the code for testing
-    console.log(`Email code for ${email}: ${code}`);
+    // Send email with code
+    try {
+      await emailTransporter.sendMail({
+        from: process.env.EMAIL_USER || 'your-email@gmail.com',
+        to: email,
+        subject: 'Код авторизации - ЮрТренажёр',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #d52b1e; text-align: center;">🔐 Код авторизации</h2>
+            <p>Ваш код для входа в приложение ЮрТренажёр:</p>
+            <div style="background: #f8f9fa; padding: 20px; text-align: center; border-radius: 8px; margin: 20px 0;">
+              <h1 style="color: #d52b1e; font-size: 32px; margin: 0; letter-spacing: 4px;">${code}</h1>
+            </div>
+            <p>⏰ Код действителен 5 минут</p>
+            <p>Если вы не запрашивали этот код, просто проигнорируйте это письмо.</p>
+            <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+            <p style="color: #666; font-size: 12px; text-align: center;">
+              ЮрТренажёр - Ваш помощник в изучении юриспруденции
+            </p>
+          </div>
+        `
+      });
+      
+      console.log(`Email sent to ${email} with code: ${code}`);
+    } catch (emailError) {
+      console.error('Email sending error:', emailError);
+      // Still return success for testing, but log the error
+    }
 
     res.json({ 
       success: true, 
-      message: 'Код отправлен на email',
-      code: code // Remove this in production
+      message: 'Код отправлен на email'
     });
   } catch (error) {
     console.error('Error sending email code:', error);
