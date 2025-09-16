@@ -122,6 +122,116 @@ app.post('/api/quiz/attempt', async (req, res) => {
   }
 });
 
+// Search endpoint
+app.get('/api/search', async (req, res) => {
+  try {
+    const { q: query, type } = req.query;
+    
+    if (!query || typeof query !== 'string') {
+      return res.status(400).json({ error: 'Query parameter is required' });
+    }
+
+    const searchQuery = `%${query.toLowerCase()}%`;
+    let results = [];
+
+    if (!type || type === 'all' || type === 'subjects') {
+      // Search subjects
+      const subjects = await prisma.subject.findMany({
+        where: {
+          OR: [
+            { title: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } }
+          ],
+          isActive: true
+        },
+        include: {
+          topics: {
+            where: { isActive: true },
+            select: { id: true, title: true }
+          }
+        }
+      });
+      
+      results.push(...subjects.map(subject => ({
+        type: 'subject',
+        id: subject.id,
+        title: subject.title,
+        description: subject.description,
+        slug: subject.slug,
+        icon: subject.icon,
+        topicsCount: subject.topics.length
+      })));
+    }
+
+    if (!type || type === 'all' || type === 'topics') {
+      // Search topics
+      const topics = await prisma.topic.findMany({
+        where: {
+          OR: [
+            { title: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } }
+          ],
+          isActive: true
+        },
+        include: {
+          subject: {
+            select: { title: true, slug: true, icon: true }
+          }
+        }
+      });
+      
+      results.push(...topics.map(topic => ({
+        type: 'topic',
+        id: topic.id,
+        title: topic.title,
+        description: topic.description,
+        difficulty: topic.difficulty,
+        questionsCount: topic.questionsCount,
+        subjectTitle: topic.subject.title,
+        subjectSlug: topic.subject.slug,
+        subjectIcon: topic.subject.icon
+      })));
+    }
+
+    if (!type || type === 'all' || type === 'questions') {
+      // Search questions
+      const questions = await prisma.question.findMany({
+        where: {
+          OR: [
+            { text: { contains: query, mode: 'insensitive' } },
+            { explanation: { contains: query, mode: 'insensitive' } }
+          ],
+          isActive: true
+        },
+        include: {
+          topic: {
+            select: { title: true, subject: { select: { title: true, slug: true } } }
+          }
+        },
+        take: 20 // Limit questions to avoid too many results
+      });
+      
+      results.push(...questions.map(question => ({
+        type: 'question',
+        id: question.id,
+        text: question.text,
+        topicTitle: question.topic.title,
+        subjectTitle: question.topic.subject.title,
+        subjectSlug: question.topic.subject.slug
+      })));
+    }
+
+    res.json({
+      query,
+      results,
+      total: results.length
+    });
+  } catch (error) {
+    console.error('Error searching:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Health check
 app.get('/api/health', async (req, res) => {
   try {
