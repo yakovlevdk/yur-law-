@@ -8,6 +8,9 @@ import crypto from 'crypto';
 // Load environment variables
 dotenv.config();
 
+// Telegram Bot Token
+const TELEGRAM_BOT_TOKEN = '8422331183:AAFU0ONC0ETWiw74MplmIxMeFZGXloIxDuU';
+
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
@@ -236,7 +239,7 @@ app.get('/api/search', async (req, res) => {
 // Auth endpoints
 app.post('/api/auth/request-code', async (req, res) => {
   try {
-    const { telegramId, username, firstName, lastName } = req.body;
+    const { telegramId } = req.body;
     
     if (!telegramId) {
       return res.status(400).json({ error: 'Telegram ID is required' });
@@ -246,24 +249,38 @@ app.post('/api/auth/request-code', async (req, res) => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
-    // Store code in database (you might want to create a separate table for this)
-    // For now, we'll use a simple in-memory store
+    // Store code in database
     const authCodes = new Map();
     authCodes.set(code, {
       telegramId,
-      username,
-      firstName,
-      lastName,
       expiresAt
     });
 
-    // In production, store this in Redis or database
-    global.authCodes = authCodes;
+    (global as any).authCodes = authCodes;
+
+    // Send code to Telegram
+    try {
+      const telegramResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: telegramId,
+          text: `🔐 Код авторизации: ${code}\n\n⏰ Код действителен 5 минут`
+        })
+      });
+      
+      if (telegramResponse.ok) {
+        console.log('Code sent to Telegram successfully');
+      } else {
+        console.log('Telegram error:', await telegramResponse.text());
+      }
+    } catch (telegramError) {
+      console.log('Telegram error:', telegramError);
+    }
 
     res.json({ 
       success: true, 
-      message: 'Код отправлен в Telegram',
-      code: code // Remove this in production
+      message: 'Код отправлен в Telegram'
     });
   } catch (error) {
     console.error('Error requesting code:', error);
