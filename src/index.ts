@@ -8,12 +8,9 @@ import crypto from 'crypto';
 // Load environment variables
 dotenv.config();
 
-// Telegram Bot Token
-const TELEGRAM_BOT_TOKEN = '8422331183:AAFU0ONC0ETWiw74MplmIxMeFZGXloIxDuU';
-
 // Extend global interface for auth codes
 declare global {
-  var authCodes: Map<string, { telegramId: string; expiresAt: Date }> | undefined;
+  var authCodes: Map<string, { email: string; expiresAt: Date }> | undefined;
 }
 
 const app = express();
@@ -241,13 +238,13 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-// Auth endpoints
-app.post('/api/auth/request-code', async (req, res) => {
+// Email auth endpoints
+app.post('/api/auth/send-email-code', async (req, res) => {
   try {
-    const { telegramId } = req.body;
+    const { email } = req.body;
     
-    if (!telegramId) {
-      return res.status(400).json({ error: 'Telegram ID is required' });
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
     }
 
     // Generate 6-digit code
@@ -255,45 +252,30 @@ app.post('/api/auth/request-code', async (req, res) => {
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
     // Store code in database
-    const authCodes = new Map();
+    const authCodes = global.authCodes || new Map();
     authCodes.set(code, {
-      telegramId,
+      email,
       expiresAt
     });
-
+    
     global.authCodes = authCodes;
 
-    // Send code to Telegram
-    try {
-      const telegramResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: telegramId,
-          text: `🔐 Код авторизации: ${code}\n\n⏰ Код действителен 5 минут`
-        })
-      });
-      
-      if (telegramResponse.ok) {
-        console.log('Code sent to Telegram successfully');
-      } else {
-        console.log('Telegram error:', await telegramResponse.text());
-      }
-    } catch (telegramError) {
-      console.log('Telegram error:', telegramError);
-    }
+    // TODO: Send email with code
+    // For now, just return the code for testing
+    console.log(`Email code for ${email}: ${code}`);
 
     res.json({ 
       success: true, 
-      message: 'Код отправлен в Telegram'
+      message: 'Код отправлен на email',
+      code: code // Remove this in production
     });
   } catch (error) {
-    console.error('Error requesting code:', error);
+    console.error('Error sending email code:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-app.post('/api/auth/verify-code', async (req, res) => {
+app.post('/api/auth/verify-email-code', async (req, res) => {
   try {
     const { code } = req.body;
     
@@ -316,17 +298,14 @@ app.post('/api/auth/verify-code', async (req, res) => {
 
     // Find or create user
     let user = await prisma.user.findUnique({
-      where: { telegramId: codeData.telegramId }
+      where: { email: codeData.email }
     });
 
     if (!user) {
       user = await prisma.user.create({
         data: {
-          telegramId: codeData.telegramId,
-          username: codeData.username,
-          firstName: codeData.firstName,
-          lastName: codeData.lastName,
-          email: `${codeData.telegramId}@telegram.local`
+          email: codeData.email,
+          name: codeData.email.split('@')[0] // Use email prefix as name
         }
       });
     }
@@ -338,10 +317,8 @@ app.post('/api/auth/verify-code', async (req, res) => {
       success: true, 
       user: {
         id: user.id,
-        telegramId: user.telegramId,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName
+        email: user.email,
+        name: user.name
       }
     });
   } catch (error) {
