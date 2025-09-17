@@ -161,15 +161,17 @@ app.get('/api/progress/summary', requireAuth, async (req, res) => {
   try {
     const userId = (req as any).userId as string;
 
-    const [attempts, progress, dueCount] = await Promise.all([
+    const [attempts, progress] = await Promise.all([
       prisma.quizAttempt.findMany({ where: { userId } }),
-      prisma.userProgress.findMany({ where: { userId } }),
-      prisma.userProgress.count({ where: { userId, nextReview: { lte: new Date() } } })
+      prisma.userProgress.findMany({ where: { userId } })
     ]);
 
     const totalAttempts = attempts.length;
     const avgScore = totalAttempts > 0 ? Math.round(attempts.reduce((s, a) => s + a.score, 0) / totalAttempts) : 0;
+    
+    // Простая логика: masteryLevel >= 3 = освоена, < 3 = к повторению
     const masteredTopics = progress.filter(p => p.masteryLevel >= 3).length;
+    const dueCount = progress.filter(p => p.masteryLevel < 3).length;
 
     res.json({
       totalAttempts,
