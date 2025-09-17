@@ -7,7 +7,7 @@ import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import fetch from 'node-fetch';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 // Load environment variables
 dotenv.config();
