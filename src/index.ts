@@ -354,7 +354,7 @@ app.get('/api/topics/:topicId/questions', async (req, res) => {
 app.post('/api/quiz/attempt', requireAuth, async (req, res) => {
   try {
     const { topicId, score, totalQuestions, correctAnswers } = req.body;
-    const userId = req.user.id;
+    const userId = req.user!.id;
     
     console.log('Quiz attempt request:', { topicId, score, totalQuestions, correctAnswers, userId });
 
