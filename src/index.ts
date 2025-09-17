@@ -126,7 +126,7 @@ function requireAuth(req: express.Request, res: express.Response, next: express.
       return res.status(401).json({ error: 'Unauthorized' });
     }
     const payload = jwt.verify(token, JWT_SECRET) as { userId: string };
-    (req as any).userId = payload.userId;
+    req.user = { id: payload.userId, username: '' };
     next();
   } catch (e) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -136,7 +136,7 @@ function requireAuth(req: express.Request, res: express.Response, next: express.
 // Current user endpoint
 app.get('/api/auth/me', requireAuth, async (req, res) => {
   try {
-    const userId = (req as any).userId as string;
+    const userId = req.user!.id;
     const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true, username: true, email: true, phone: true, name: true } });
     if (!user) return res.status(404).json({ error: 'Not found' });
     res.json({ user });
