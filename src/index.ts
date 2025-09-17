@@ -240,6 +240,95 @@ app.get('/api/stats/attempts', requireAuth, async (req, res) => {
   }
 });
 
+// Goals API
+app.post('/api/goals', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+    const { name, type, targetPerDay, startDate, endDate } = req.body;
+    const goal = await prisma.goal.create({
+      data: {
+        userId,
+        name,
+        type,
+        targetPerDay: Number(targetPerDay) || 1,
+        startDate: startDate ? new Date(startDate) : new Date(),
+        endDate: endDate ? new Date(endDate) : null,
+        isActive: true,
+      }
+    });
+    res.json({ goal });
+  } catch (error) {
+    console.error('Create goal error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/api/goals', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+    const goals = await prisma.goal.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } });
+    res.json({ goals });
+  } catch (error) {
+    console.error('List goals error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.patch('/api/goals/:id', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+    const { id } = req.params;
+    const { name, type, targetPerDay, isActive, endDate } = req.body;
+    const goal = await prisma.goal.update({
+      where: { id },
+      data: {
+        ...(name !== undefined ? { name } : {}),
+        ...(type !== undefined ? { type } : {}),
+        ...(targetPerDay !== undefined ? { targetPerDay: Number(targetPerDay) } : {}),
+        ...(isActive !== undefined ? { isActive: Boolean(isActive) } : {}),
+        ...(endDate !== undefined ? { endDate: endDate ? new Date(endDate) : null } : {}),
+      }
+    });
+    if (goal.userId !== userId) return res.status(403).json({ error: 'Forbidden' });
+    res.json({ goal });
+  } catch (error) {
+    console.error('Update goal error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Goals summary: progress vs target for the last 14 days
+app.get('/api/goals/summary', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+    const goals = await prisma.goal.findMany({ where: { userId, isActive: true } });
+    const since = new Date();
+    since.setDate(since.getDate() - 14);
+    const attempts = await prisma.quizAttempt.findMany({
+      where: { userId, completedAt: { gte: since } },
+      orderBy: { completedAt: 'asc' },
+      select: { completedAt: true }
+    });
+    const byDay = new Map<string, number>();
+    for (const a of attempts) {
+      const d = a.completedAt as unknown as Date;
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      byDay.set(key, (byDay.get(key) || 0) + 1);
+    }
+    const days: Array<{ date: string; attempts: number }> = [];
+    const today = new Date();
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      days.push({ date: key, attempts: byDay.get(key) || 0 });
+    }
+    res.json({ goals, days });
+  } catch (error) {
+    console.error('Goals summary error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 // -----------------------------
 // Progress & SM-2 (light) API
 // -----------------------------

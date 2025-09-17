@@ -25,6 +25,7 @@ model User {
   // Relations
   quizAttempts QuizAttempt[]
   userProgress UserProgress[]
+  goals        Goal[]
 
   @@map("users")
 }
@@ -117,4 +118,28 @@ model UserProgress {
 
   @@unique([userId, topicId])
   @@map("user_progress")
+}
+
+// Goals
+enum GoalType {
+  DAILY_ATTEMPTS
+  DAILY_MASTERED
+}
+
+model Goal {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  type          GoalType
+  targetPerDay  Int
+  startDate     DateTime @default(now())
+  endDate       DateTime?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("goals")
 }
