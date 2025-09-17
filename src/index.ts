@@ -134,6 +134,138 @@ app.get('/api/auth/me', requireAuth, async (req, res) => {
   }
 });
 
+// -----------------------------
+// Progress & SM-2 (light) API
+// -----------------------------
+
+function getNextIntervalDaysByMastery(masteryLevel: number): number {
+  // Простая лестница интервалов без EF: 0,1,2,3,4,5 → дни
+  const mapping = [1, 2, 4, 7, 14, 30];
+  const idx = Math.max(0, Math.min(masteryLevel, mapping.length - 1));
+  return mapping[idx];
+}
+
+app.get('/api/progress/summary', requireAuth, async (req, res) => {
+  try {
+    const userId = (req as any).userId as string;
+
+    const [attempts, progress, dueCount] = await Promise.all([
+      prisma.quizAttempt.findMany({ where: { userId } }),
+      prisma.userProgress.findMany({ where: { userId } }),
+      prisma.userProgress.count({ where: { userId, nextReview: { lte: new Date() } } })
+    ]);
+
+    const totalAttempts = attempts.length;
+    const avgScore = totalAttempts > 0 ? Math.round(attempts.reduce((s, a) => s + a.score, 0) / totalAttempts) : 0;
+    const masteredTopics = progress.filter(p => p.masteryLevel >= 3).length;
+
+    res.json({
+      totalAttempts,
+      avgScore,
+      masteredTopics,
+      totalTrackedTopics: progress.length,
+      dueCount
+    });
+  } catch (error) {
+    console.error('Progress summary error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/api/review/due', requireAuth, async (req, res) => {
+  try {
+    const userId = (req as any).userId as string;
+
+    const due = await prisma.userProgress.findMany({
+      where: {
+        userId,
+        OR: [
+          { nextReview: { lte: new Date() } },
+          { nextReview: null },
+        ],
+      },
+      include: {
+        topic: { select: { id: true, title: true, difficulty: true, questionsCount: true, subject: { select: { title: true, slug: true } } } }
+      },
+      orderBy: [
+        { nextReview: 'asc' },
+        { updatedAt: 'desc' }
+      ],
+      take: 20
+    });
+
+    res.json({
+      total: due.length,
+      items: due.map(d => ({
+        topicId: d.topicId,
+        masteryLevel: d.masteryLevel,
+        nextReview: d.nextReview,
+        topicTitle: (d as any).topic.title,
+        subjectTitle: (d as any).topic.subject.title,
+        subjectSlug: (d as any).topic.subject.slug,
+        questionsCount: (d as any).topic.questionsCount,
+        difficulty: (d as any).topic.difficulty,
+      }))
+    });
+  } catch (error) {
+    console.error('Review due error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/review/grade', requireAuth, async (req, res) => {
+  try {
+    const userId = (req as any).userId as string;
+    const { topicId, quality } = req.body as { topicId?: string; quality?: number };
+
+    if (!topicId || quality === undefined) {
+      return res.status(400).json({ error: 'topicId и quality обязательны' });
+    }
+    if (quality < 0 || quality > 5) {
+      return res.status(400).json({ error: 'quality должен быть в диапазоне 0..5' });
+    }
+
+    // Найти или создать запись прогресса
+    let progress = await prisma.userProgress.findFirst({ where: { userId, topicId } });
+    if (!progress) {
+      progress = await prisma.userProgress.create({ data: { userId, topicId, masteryLevel: 0 } });
+    }
+
+    let newMastery = progress.masteryLevel;
+    let nextDays = 1;
+
+    if (quality >= 3) {
+      newMastery = Math.min(5, progress.masteryLevel + 1);
+      nextDays = getNextIntervalDaysByMastery(newMastery);
+    } else {
+      // провал — обнуляем уровень до 0 и даём ближайшее повторение
+      newMastery = 0;
+      nextDays = 1;
+    }
+
+    const now = new Date();
+    const next = new Date(now.getTime() + nextDays * 24 * 60 * 60 * 1000);
+
+    const updated = await prisma.userProgress.update({
+      where: { id: progress.id },
+      data: {
+        masteryLevel: newMastery,
+        lastReviewed: now,
+        nextReview: next
+      }
+    });
+
+    res.json({
+      success: true,
+      masteryLevel: updated.masteryLevel,
+      nextReview: updated.nextReview
+    });
+  } catch (error) {
+    console.error('Review grade error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Subjects routes
 app.get('/api/subjects', async (req, res) => {
   try {
