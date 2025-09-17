@@ -146,6 +146,100 @@ app.get('/api/auth/me', requireAuth, async (req, res) => {
   }
 });
 
+// Stats: summary with attempts by day and mastery/review counts
+app.get('/api/stats/summary', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+
+    // Fetch attempts (last 30 days) and progress
+    const since = new Date();
+    since.setDate(since.getDate() - 30);
+
+    const [attempts, progress] = await Promise.all([
+      prisma.quizAttempt.findMany({
+        where: { userId, createdAt: { gte: since } },
+        orderBy: { createdAt: 'asc' },
+        select: { id: true, score: true, createdAt: true },
+      }),
+      prisma.userProgress.findMany({ where: { userId }, select: { masteryLevel: true } })
+    ]);
+
+    const totalAttempts = attempts.length;
+    const avgScore = totalAttempts > 0 ? Math.round(attempts.reduce((s, a) => s + a.score, 0) / totalAttempts) : 0;
+
+    const masteredTopics = progress.filter(p => p.masteryLevel >= 3).length;
+    const reviewTopics = progress.filter(p => p.masteryLevel < 3).length;
+
+    // Group attempts by day (YYYY-MM-DD)
+    const attemptsByDayMap = new Map<string, { count: number; avgScore: number }>();
+    for (const a of attempts) {
+      const d = a.createdAt;
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const prev = attemptsByDayMap.get(key) || { count: 0, avgScore: 0 };
+      const newCount = prev.count + 1;
+      const newAvg = (prev.avgScore * prev.count + a.score) / newCount;
+      attemptsByDayMap.set(key, { count: newCount, avgScore: newAvg });
+    }
+
+    // Return last 14 days window (fill empty days with zeros)
+    const days: Array<{ date: string; count: number; avgScore: number }> = [];
+    const today = new Date();
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const val = attemptsByDayMap.get(key) || { count: 0, avgScore: 0 };
+      days.push({ date: key, count: val.count, avgScore: Math.round(val.avgScore) });
+    }
+
+    res.json({ totalAttempts, avgScore, masteredTopics, reviewTopics, days });
+  } catch (error) {
+    console.error('Stats summary error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Stats: attempts history (paginated)
+app.get('/api/stats/attempts', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user!.id;
+    const limit = Math.min(parseInt(String(req.query.limit || '20'), 10) || 20, 100);
+    const cursor = req.query.cursor as string | undefined;
+
+    const results = await prisma.quizAttempt.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      take: limit + 1,
+      ...(cursor ? { skip: 1, cursor: { id: cursor } } : {}),
+      select: { id: true, topicId: true, score: true, totalQuestions: true, correctAnswers: true, createdAt: true }
+    });
+
+    const hasMore = results.length > limit;
+    const items = hasMore ? results.slice(0, -1) : results;
+
+    // Optionally enrich with topic title
+    const topicIds = Array.from(new Set(items.map(i => i.topicId)));
+    const topics = await prisma.topic.findMany({ where: { id: { in: topicIds } }, select: { id: true, title: true } });
+    const topicMap = new Map(topics.map(t => [t.id, t.title] as const));
+
+    res.json({
+      items: items.map(i => ({
+        id: i.id,
+        topicId: i.topicId,
+        topicTitle: topicMap.get(i.topicId) || '',
+        score: i.score,
+        totalQuestions: i.totalQuestions,
+        correctAnswers: i.correctAnswers,
+        createdAt: i.createdAt
+      })),
+      nextCursor: hasMore ? items[items.length - 1].id : null
+    });
+  } catch (error) {
+    console.error('Attempts history error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // -----------------------------
 // Progress & SM-2 (light) API
 // -----------------------------
