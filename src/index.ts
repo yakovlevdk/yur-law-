@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
@@ -8,6 +8,18 @@ import nodemailer from 'nodemailer';
 import fetch from 'node-fetch';
 import bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+
+// Расширяем тип Request для добавления user
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        id: string;
+        username: string;
+      };
+    }
+  }
+}
 
 // Load environment variables
 dotenv.config();
