@@ -105,6 +105,35 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
+// Simple JWT auth middleware
+function requireAuth(req: express.Request, res: express.Response, next: express.NextFunction) {
+  try {
+    const authHeader = req.headers.authorization || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+    if (!token) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const payload = jwt.verify(token, JWT_SECRET) as { userId: string };
+    (req as any).userId = payload.userId;
+    next();
+  } catch (e) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+}
+
+// Current user endpoint
+app.get('/api/auth/me', requireAuth, async (req, res) => {
+  try {
+    const userId = (req as any).userId as string;
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true, username: true, email: true, phone: true, name: true } });
+    if (!user) return res.status(404).json({ error: 'Not found' });
+    res.json({ user });
+  } catch (error) {
+    console.error('Me error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Subjects routes
 app.get('/api/subjects', async (req, res) => {
   try {
