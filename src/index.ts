@@ -339,13 +339,14 @@ app.get('/api/topics/:topicId/questions', async (req, res) => {
 });
 
 // Quiz attempt route
-app.post('/api/quiz/attempt', async (req, res) => {
+app.post('/api/quiz/attempt', requireAuth, async (req, res) => {
   try {
-    const { userId, topicId, score, totalQuestions, correctAnswers } = req.body;
+    const { topicId, score, totalQuestions, correctAnswers } = req.body;
+    const userId = req.user.id;
 
     const attempt = await prisma.quizAttempt.create({
       data: {
-        userId: userId || null,
+        userId,
         topicId,
         score,
         totalQuestions,
