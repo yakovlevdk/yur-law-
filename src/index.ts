@@ -323,7 +323,12 @@ app.get('/api/goals/summary', requireAuth, async (req, res) => {
       const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       days.push({ date: key, attempts: byDay.get(key) || 0 });
     }
-    res.json({ goals, days });
+    // For now, progress per goal uses attempts per day.
+    const goalsWithProgress = goals.map(g => ({
+      ...g,
+      progressDays: days.map(d => ({ date: d.date, value: d.attempts }))
+    }));
+    res.json({ goals: goalsWithProgress, days });
   } catch (error) {
     console.error('Goals summary error:', error);
     res.status(500).json({ error: 'Internal server error' });
