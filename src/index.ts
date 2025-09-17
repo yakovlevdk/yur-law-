@@ -343,6 +343,8 @@ app.post('/api/quiz/attempt', requireAuth, async (req, res) => {
   try {
     const { topicId, score, totalQuestions, correctAnswers } = req.body;
     const userId = req.user.id;
+    
+    console.log('Quiz attempt request:', { topicId, score, totalQuestions, correctAnswers, userId });
 
     const attempt = await prisma.quizAttempt.create({
       data: {
@@ -354,6 +356,7 @@ app.post('/api/quiz/attempt', requireAuth, async (req, res) => {
       }
     });
 
+    console.log('Quiz attempt created:', attempt);
     res.json(attempt);
   } catch (error) {
     console.error('Error saving quiz attempt:', error);
