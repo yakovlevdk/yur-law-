@@ -157,9 +157,9 @@ app.get('/api/stats/summary', requireAuth, async (req, res) => {
 
     const [attempts, progress] = await Promise.all([
       prisma.quizAttempt.findMany({
-        where: { userId, createdAt: { gte: since } },
-        orderBy: { createdAt: 'asc' },
-        select: { id: true, score: true, createdAt: true },
+        where: { userId, completedAt: { gte: since } },
+        orderBy: { completedAt: 'asc' },
+        select: { id: true, score: true, completedAt: true },
       }),
       prisma.userProgress.findMany({ where: { userId }, select: { masteryLevel: true } })
     ]);
@@ -173,7 +173,7 @@ app.get('/api/stats/summary', requireAuth, async (req, res) => {
     // Group attempts by day (YYYY-MM-DD)
     const attemptsByDayMap = new Map<string, { count: number; avgScore: number }>();
     for (const a of attempts) {
-      const d = a.createdAt;
+      const d = a.completedAt as unknown as Date;
       const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       const prev = attemptsByDayMap.get(key) || { count: 0, avgScore: 0 };
       const newCount = prev.count + 1;
@@ -208,10 +208,10 @@ app.get('/api/stats/attempts', requireAuth, async (req, res) => {
 
     const results = await prisma.quizAttempt.findMany({
       where: { userId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { completedAt: 'desc' },
       take: limit + 1,
       ...(cursor ? { skip: 1, cursor: { id: cursor } } : {}),
-      select: { id: true, topicId: true, score: true, totalQuestions: true, correctAnswers: true, createdAt: true }
+      select: { id: true, topicId: true, score: true, totalQuestions: true, correctAnswers: true, completedAt: true }
     });
 
     const hasMore = results.length > limit;
@@ -230,7 +230,7 @@ app.get('/api/stats/attempts', requireAuth, async (req, res) => {
         score: i.score,
         totalQuestions: i.totalQuestions,
         correctAnswers: i.correctAnswers,
-        createdAt: i.createdAt
+        createdAt: i.completedAt
       })),
       nextCursor: hasMore ? items[items.length - 1].id : null
     });
