@@ -5,13 +5,16 @@ import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import fetch from 'node-fetch';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // Load environment variables
 dotenv.config();
 
 // Extend global interface for auth codes
 declare global {
-  var authCodes: Map<string, { email: string; expiresAt: Date }> | undefined;
+  var authCodes: Map<string, { email?: string; phone?: string; expiresAt: Date }> | undefined;
 }
 
 // Email configuration
@@ -23,9 +26,14 @@ const emailTransporter = nodemailer.createTransport({
   }
 });
 
+// SMS configuration (SMS.ru)
+const SMS_API_ID = process.env.SMS_API_ID || '';
+const SMS_FROM = process.env.SMS_FROM || '';
+
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
+const JWT_SECRET = process.env.JWT_SECRET || 'dev_jwt_secret_change_me';
 
 // Middleware
 app.use(helmet());
@@ -42,6 +50,59 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     status: 'running'
   });
+});
+
+// Local auth (username/password)
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    const { username, password, email, phone } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: 'username и password обязательны' });
+    }
+
+    const existing = await prisma.user.findFirst({ where: { OR: [ { username }, email ? { email } : undefined, phone ? { phone } : undefined ].filter(Boolean) as any } });
+    if (existing) {
+      return res.status(400).json({ error: 'Пользователь с такими данными уже существует' });
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: { username, passwordHash, email: email || null, phone: phone || null, name: username }
+    });
+
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ user: { id: user.id, username: user.username, email: user.email, phone: user.phone }, token });
+  } catch (error) {
+    console.error('Register error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: 'username и password обязательны' });
+    }
+
+    const user = await prisma.user.findFirst({ where: { OR: [ { username }, { email: username }, { phone: username } ] } });
+    if (!user || !user.passwordHash) {
+      return res.status(400).json({ error: 'Неверные учетные данные' });
+    }
+
+    const ok = await bcrypt.compare(password, user.passwordHash);
+    if (!ok) {
+      return res.status(400).json({ error: 'Неверные учетные данные' });
+    }
+
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ user: { id: user.id, username: user.username, email: user.email, phone: user.phone }, token });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // Subjects routes
@@ -357,6 +418,86 @@ app.post('/api/auth/verify-email-code', async (req, res) => {
     });
   } catch (error) {
     console.error('Error verifying code:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// SMS auth endpoints
+app.post('/api/auth/send-sms-code', async (req, res) => {
+  try {
+    const { phone } = req.body;
+
+    if (!phone) {
+      return res.status(400).json({ error: 'Phone is required' });
+    }
+
+    // Generate 6-digit code
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+
+    // Store code in memory
+    const authCodes = global.authCodes || new Map();
+    authCodes.set(code, { phone, expiresAt });
+    global.authCodes = authCodes;
+
+    // Send SMS via SMS.ru
+    try {
+      if (!SMS_API_ID) {
+        console.warn('SMS_API_ID is not set; skipping actual SMS send');
+      } else {
+        const params = new URLSearchParams({
+          api_id: SMS_API_ID,
+          to: phone,
+          msg: `Код входа: ${code}`,
+          from: SMS_FROM,
+          json: '1'
+        });
+        const response = await fetch(`https://sms.ru/sms/send?${params.toString()}`);
+        const data = await response.json();
+        console.log('SMS.ru response:', data);
+      }
+    } catch (smsError) {
+      console.error('SMS sending error:', smsError);
+      // не падаем из-за SMS ошибок в dev
+    }
+
+    res.json({ success: true, message: 'Код отправлен по SMS' });
+  } catch (error) {
+    console.error('Error sending sms code:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/auth/verify-sms-code', async (req, res) => {
+  try {
+    const { code, phone } = req.body;
+
+    if (!code || !phone) {
+      return res.status(400).json({ error: 'Code and phone are required' });
+    }
+
+    const authCodes = global.authCodes || new Map();
+    const codeData = authCodes.get(code);
+
+    if (!codeData || codeData.phone !== phone) {
+      return res.status(400).json({ error: 'Invalid code' });
+    }
+
+    if (new Date() > codeData.expiresAt) {
+      authCodes.delete(code);
+      return res.status(400).json({ error: 'Code expired' });
+    }
+
+    // Find or create user by phone
+    let user = await prisma.user.findFirst({ where: { phone } });
+    if (!user) {
+      user = await prisma.user.create({ data: { phone, name: phone } });
+    }
+
+    authCodes.delete(code);
+    res.json({ success: true, user: { id: user.id, phone: user.phone, name: user.name } });
+  } catch (error) {
+    console.error('Error verifying sms code:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
