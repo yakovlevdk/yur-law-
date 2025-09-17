@@ -193,10 +193,7 @@ app.get('/api/review/due', requireAuth, async (req, res) => {
     const due = await prisma.userProgress.findMany({
       where: {
         userId,
-        OR: [
-          { nextReview: { lte: new Date() } },
-          { nextReview: null },
-        ],
+        masteryLevel: { lt: 3 }, // Теми к повторению (не освоенные)
       },
       include: {
         topic: { select: { id: true, title: true, difficulty: true, questionsCount: true, subject: { select: { title: true, slug: true } } } }
