@@ -1,0 +1,72 @@
+[
+  {
+    "subjectSlug": "constitutional-law-basics",
+    "title": "Что такое Конституция",
+    "description": "Основной закон государства",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "constitutional-law-basics",
+    "title": "Права человека",
+    "description": "Основные права и свободы",
+    "questionsCount": 10,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "tax-law-basics",
+    "title": "Что такое налоги",
+    "description": "Простые правила налогообложения",
+    "questionsCount": 9,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "tax-law-basics",
+    "title": "Виды налогов",
+    "description": "Федеральные, региональные, местные налоги",
+    "questionsCount": 7,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law-basics",
+    "title": "Право собственности на землю",
+    "description": "Кто может владеть землей",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "land-law-basics",
+    "title": "Использование земли",
+    "description": "Правила землепользования",
+    "questionsCount": 6,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "environmental-law-basics",
+    "title": "Право на чистую природу",
+    "description": "Экологические права граждан",
+    "questionsCount": 7,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "environmental-law-basics",
+    "title": "Охрана природы",
+    "description": "Правила защиты окружающей среды",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "intellectual-property-basics",
+    "title": "Авторские права",
+    "description": "Права на произведения",
+    "questionsCount": 9,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "intellectual-property-basics",
+    "title": "Товарные знаки",
+    "description": "Защита брендов и логотипов",
+    "questionsCount": 6,
+    "difficulty": "medium"
+  }
+]

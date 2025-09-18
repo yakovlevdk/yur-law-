@@ -1,0 +1,247 @@
+[
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Административные правонарушения",
+    "description": "Составы административных правонарушений",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Административная ответственность",
+    "description": "Виды административных наказаний",
+    "questionsCount": 30,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Производство по делам об административных правонарушениях",
+    "description": "Порядок рассмотрения административных дел",
+    "questionsCount": 40,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Государственная служба",
+    "description": "Правовое регулирование государственной службы",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Административные процедуры",
+    "description": "Порядок предоставления государственных услуг",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Административный надзор",
+    "description": "Контроль за соблюдением административного законодательства",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law",
+    "title": "Административная юстиция",
+    "description": "Судебный контроль за административными актами",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Трудовой договор",
+    "description": "Заключение, изменение и прекращение трудового договора",
+    "questionsCount": 45,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Рабочее время и время отдыха",
+    "description": "Режимы работы и виды отдыха работников",
+    "questionsCount": 35,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Оплата труда",
+    "description": "Системы оплаты труда и гарантии работникам",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Трудовые споры",
+    "description": "Порядок разрешения индивидуальных и коллективных трудовых споров",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Охрана труда",
+    "description": "Правовое регулирование охраны труда",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Трудовые гарантии и компенсации",
+    "description": "Гарантии и компенсации работникам",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Дисциплина труда",
+    "description": "Правила внутреннего трудового распорядка",
+    "questionsCount": 20,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law",
+    "title": "Материальная ответственность",
+    "description": "Материальная ответственность работников и работодателей",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Заключение и расторжение брака",
+    "description": "Условия и порядок регистрации брака",
+    "questionsCount": 30,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Права и обязанности супругов",
+    "description": "Личные и имущественные права в браке",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Права несовершеннолетних детей",
+    "description": "Защита прав детей в семейных отношениях",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Алиментные обязательства",
+    "description": "Обязанности по содержанию членов семьи",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Усыновление и опека",
+    "description": "Порядок усыновления и установления опеки",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Брачный договор",
+    "description": "Соглашение супругов о правах и обязанностях",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "family-law",
+    "title": "Лишение родительских прав",
+    "description": "Основания и порядок лишения родительских прав",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговая система РФ",
+    "description": "Структура и принципы налоговой системы",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговые правоотношения",
+    "description": "Субъекты и объекты налоговых правоотношений",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговый контроль",
+    "description": "Формы и методы налогового контроля",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налог на добавленную стоимость",
+    "description": "Плательщики, объект, ставки, порядок исчисления НДС",
+    "questionsCount": 40,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налог на прибыль организаций",
+    "description": "Плательщики, объект, ставки, порядок исчисления налога на прибыль",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налог на доходы физических лиц",
+    "description": "Плательщики, объект, ставки, порядок исчисления НДФЛ",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговые правонарушения",
+    "description": "Виды налоговых правонарушений и ответственность",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Право собственности на землю",
+    "description": "Формы и виды права собственности на землю",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Землепользование",
+    "description": "Права и обязанности землепользователей",
+    "questionsCount": 25,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Государственное управление земельными ресурсами",
+    "description": "Полномочия органов власти в сфере земельных отношений",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Земельные правонарушения",
+    "description": "Виды земельных правонарушений и ответственность",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Земельный налог",
+    "description": "Плательщики, объект, ставки земельного налога",
+    "questionsCount": 20,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Кадастровая деятельность",
+    "description": "Порядок ведения кадастрового учета",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  }
+]

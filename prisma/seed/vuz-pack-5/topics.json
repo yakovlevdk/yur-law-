@@ -1,0 +1,177 @@
+[
+  {
+    "subjectSlug": "advocacy",
+    "title": "Понятие и принципы адвокатуры",
+    "description": "Основы организации и деятельности адвокатуры",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "advocacy",
+    "title": "Статус адвоката",
+    "description": "Права, обязанности и ответственность адвоката",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "advocacy",
+    "title": "Адвокатская тайна",
+    "description": "Понятие и гарантии адвокатской тайны",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "advocacy",
+    "title": "Формы адвокатских образований",
+    "description": "Адвокатский кабинет, коллегия, бюро, консультация",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "advocacy",
+    "title": "Органы адвокатского самоуправления",
+    "description": "Адвокатская палата, совет адвокатской палаты",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "notary",
+    "title": "Понятие и принципы нотариата",
+    "description": "Основы нотариальной деятельности",
+    "questionsCount": 20,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "notary",
+    "title": "Статус нотариуса",
+    "description": "Права, обязанности и ответственность нотариуса",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "notary",
+    "title": "Нотариальные действия",
+    "description": "Виды нотариальных действий, порядок их совершения",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "notary",
+    "title": "Нотариальные конторы",
+    "description": "Организация работы нотариальных контор",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "notary",
+    "title": "Контроль за нотариальной деятельностью",
+    "description": "Органы контроля, их полномочия",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "forensic-expertise",
+    "title": "Понятие и виды судебной экспертизы",
+    "description": "Основы судебно-экспертной деятельности",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "forensic-expertise",
+    "title": "Статус судебного эксперта",
+    "description": "Права, обязанности и ответственность эксперта",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "forensic-expertise",
+    "title": "Назначение и производство экспертизы",
+    "description": "Порядок назначения и проведения экспертизы",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "forensic-expertise",
+    "title": "Заключение эксперта",
+    "description": "Структура и содержание заключения эксперта",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "forensic-expertise",
+    "title": "Специализированные виды экспертиз",
+    "description": "Судебно-медицинская, судебно-психиатрическая экспертизы",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "law-enforcement-agencies",
+    "title": "Система правоохранительных органов",
+    "description": "Общая характеристика правоохранительных органов",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "law-enforcement-agencies",
+    "title": "Прокуратура",
+    "description": "Организация и деятельность прокуратуры",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "law-enforcement-agencies",
+    "title": "Органы внутренних дел",
+    "description": "Полиция, следственные органы, дознание",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "law-enforcement-agencies",
+    "title": "Следственный комитет",
+    "description": "Организация и деятельность СК РФ",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "law-enforcement-agencies",
+    "title": "Федеральная служба безопасности",
+    "description": "Органы ФСБ, их полномочия",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminology",
+    "title": "Предмет и метод криминалистики",
+    "description": "Основы криминалистической науки",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminology",
+    "title": "Криминалистическая техника",
+    "description": "Средства и методы криминалистической техники",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminology",
+    "title": "Криминалистическая тактика",
+    "description": "Тактические приемы расследования преступлений",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminology",
+    "title": "Методика расследования отдельных видов преступлений",
+    "description": "Особенности расследования различных преступлений",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminology",
+    "title": "Судебная баллистика",
+    "description": "Исследование огнестрельного оружия и следов выстрела",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Основы конституционного строя",
+    "description": "Принципы и основы конституционного строя РФ",
+    "questionsCount": 16,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Права и свободы человека",
+    "description": "Конституционные права и свободы граждан",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Федеративное устройство",
+    "description": "Принципы федеративного устройства России",
+    "questionsCount": 14,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговая система РФ",
+    "description": "Структура и принципы налоговой системы",
+    "questionsCount": 18,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговые правоотношения",
+    "description": "Субъекты и объекты налоговых правоотношений",
+    "questionsCount": 15,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "tax-law",
+    "title": "Налоговый контроль",
+    "description": "Формы и методы налогового контроля",
+    "questionsCount": 12,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Право собственности на землю",
+    "description": "Формы и виды права собственности на землю",
+    "questionsCount": 17,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Землепользование",
+    "description": "Права и обязанности землепользователей",
+    "questionsCount": 14,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "land-law",
+    "title": "Государственное управление земельными ресурсами",
+    "description": "Полномочия органов власти в сфере земельных отношений",
+    "questionsCount": 13,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "environmental-law",
+    "title": "Экологические права граждан",
+    "description": "Право на благоприятную окружающую среду",
+    "questionsCount": 11,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "environmental-law",
+    "title": "Экологический контроль",
+    "description": "Государственный и общественный экологический контроль",
+    "questionsCount": 16,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "environmental-law",
+    "title": "Ответственность за экологические правонарушения",
+    "description": "Виды ответственности за нарушение экологического законодательства",
+    "questionsCount": 15,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "intellectual-property",
+    "title": "Авторское право",
+    "description": "Права авторов на произведения науки, литературы и искусства",
+    "questionsCount": 19,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "intellectual-property",
+    "title": "Патентное право",
+    "description": "Права на изобретения, полезные модели и промышленные образцы",
+    "questionsCount": 17,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "intellectual-property",
+    "title": "Товарные знаки",
+    "description": "Правовая охрана товарных знаков и знаков обслуживания",
+    "questionsCount": 14,
+    "difficulty": "medium"
+  }
+]

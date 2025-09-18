@@ -1,0 +1,240 @@
+[
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Древнерусское государство и право",
+    "description": "Киевская Русь, Русская Правда, феодальные отношения",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Период феодальной раздробленности",
+    "description": "Удельные княжества, Новгородская и Псковская республики",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Образование централизованного государства",
+    "description": "Московское княжество, Судебники 1497 и 1550 годов",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Сословно-представительная монархия",
+    "description": "Земские соборы, Соборное уложение 1649 года",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Абсолютная монархия в России",
+    "description": "Реформы Петра I, государственный аппарат XVIII века",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Право Российской империи XVIII-XIX веков",
+    "description": "Кодификация права, судебная реформа 1864 года",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Государство и право в период буржуазных реформ",
+    "description": "Отмена крепостного права, земская и городская реформы",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Революция 1917 года и советское государство",
+    "description": "Октябрьская революция, первые декреты советской власти",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Советское право 1917-1991 годов",
+    "description": "Конституции СССР, кодификация советского права",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "history-of-russian-state-and-law",
+    "title": "Современное российское государство и право",
+    "description": "Конституция РФ 1993 года, современная правовая система",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-foreign-state-and-law",
+    "title": "Государство и право Древнего Востока",
+    "description": "Древний Египет, Вавилон, Индия, Китай",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-foreign-state-and-law",
+    "title": "Античное государство и право",
+    "description": "Древняя Греция, Древний Рим",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-foreign-state-and-law",
+    "title": "Государство и право Средневековья",
+    "description": "Феодальное государство, каноническое право",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "history-of-foreign-state-and-law",
+    "title": "Государство и право Нового времени",
+    "description": "Абсолютная монархия, буржуазные революции",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "history-of-foreign-state-and-law",
+    "title": "Государство и право Новейшего времени",
+    "description": "Конституционное государство, международное право",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Предмет и метод философии права",
+    "description": "Философия права как наука, ее место в системе наук",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Понятие права в философии",
+    "description": "Различные подходы к пониманию сущности права",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Право и мораль",
+    "description": "Соотношение права и морали, их взаимодействие",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Право и справедливость",
+    "description": "Понятие справедливости в праве",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Правосознание и правовая культура",
+    "description": "Понятие правосознания, правовая культура общества",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Право и государство",
+    "description": "Соотношение права и государства",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Права человека",
+    "description": "Философские основы прав человека",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "philosophy-of-law",
+    "title": "Правовая система и правовая семья",
+    "description": "Понятие правовой системы, основные правовые семьи",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Предмет и метод сравнительного правоведения",
+    "description": "Сравнительное правоведение как наука",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Правовые семьи мира",
+    "description": "Романо-германская, англо-саксонская, мусульманская правовые семьи",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Сравнительный анализ конституционного права",
+    "description": "Конституции различных стран, конституционный контроль",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Сравнительный анализ гражданского права",
+    "description": "Гражданские кодексы различных стран",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Сравнительный анализ уголовного права",
+    "description": "Уголовные кодексы различных стран",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "comparative-law",
+    "title": "Сравнительный анализ судебных систем",
+    "description": "Организация судебной власти в различных странах",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "legal-statistics",
+    "title": "Предмет и метод правовой статистики",
+    "description": "Правовая статистика как наука",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "legal-statistics",
+    "title": "Статистика преступности",
+    "description": "Методы изучения преступности, статистические показатели",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "legal-statistics",
+    "title": "Статистика гражданских дел",
+    "description": "Статистика гражданского судопроизводства",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "legal-statistics",
+    "title": "Статистика административных правонарушений",
+    "description": "Статистика административных дел",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "legal-statistics",
+    "title": "Статистика правоохранительных органов",
+    "description": "Статистика работы полиции, прокуратуры, судов",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  }
+]

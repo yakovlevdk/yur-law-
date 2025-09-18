@@ -1,0 +1,142 @@
+[
+  {
+    "subjectSlug": "civil-law-basics",
+    "title": "Что такое гражданское право",
+    "description": "Простые основы гражданского права",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-law-basics",
+    "title": "Кто может быть участником гражданских отношений",
+    "description": "Физические и юридические лица",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-law-basics",
+    "title": "Что такое сделка",
+    "description": "Простые правила заключения сделок",
+    "questionsCount": 18,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law-basics",
+    "title": "Право собственности",
+    "description": "Кто может владеть имуществом",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-law-basics",
+    "title": "Договоры",
+    "description": "Как заключать договоры",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Что такое преступление",
+    "description": "Простые признаки преступления",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Возраст уголовной ответственности",
+    "description": "С какого возраста наступает ответственность",
+    "questionsCount": 10,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Виды преступлений",
+    "description": "Основные виды преступлений",
+    "questionsCount": 18,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Наказания",
+    "description": "Какие наказания бывают",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "constitutional-law-basics",
+    "title": "Что такое Конституция",
+    "description": "Основной закон государства",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "constitutional-law-basics",
+    "title": "Права человека",
+    "description": "Основные права и свободы",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "constitutional-law-basics",
+    "title": "Государственное устройство",
+    "description": "Как устроено государство",
+    "questionsCount": 10,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law-basics",
+    "title": "Что такое административное правонарушение",
+    "description": "Простые признаки правонарушения",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "administrative-law-basics",
+    "title": "Административные наказания",
+    "description": "Виды штрафов и наказаний",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "administrative-law-basics",
+    "title": "Государственные органы",
+    "description": "Кто следит за порядком",
+    "questionsCount": 10,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Трудовой договор - что это",
+    "description": "Основы трудового договора",
+    "questionsCount": 18,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Права работника",
+    "description": "Основные права на работе",
+    "questionsCount": 15,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Обязанности работника",
+    "description": "Что должен делать работник",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Рабочее время",
+    "description": "Сколько можно работать",
+    "questionsCount": 10,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Отпуск и выходные",
+    "description": "Право на отдых",
+    "questionsCount": 12,
+    "difficulty": "easy"
+  }
+]

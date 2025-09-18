@@ -1,0 +1,72 @@
+[
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Что такое преступление",
+    "description": "Простые признаки преступления",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "criminal-law-basics",
+    "title": "Возраст уголовной ответственности",
+    "description": "С какого возраста наступает ответственность",
+    "questionsCount": 6,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-procedure-basics",
+    "title": "Кто может обратиться в суд",
+    "description": "Право на судебную защиту",
+    "questionsCount": 7,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-procedure-basics",
+    "title": "Как подать иск",
+    "description": "Простые правила подачи иска",
+    "questionsCount": 9,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "administrative-law-basics",
+    "title": "Что такое административное правонарушение",
+    "description": "Простые признаки правонарушения",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "administrative-law-basics",
+    "title": "Административные наказания",
+    "description": "Виды штрафов и наказаний",
+    "questionsCount": 6,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Трудовой договор - что это",
+    "description": "Основы трудового договора",
+    "questionsCount": 10,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "labor-law-basics",
+    "title": "Права работника",
+    "description": "Основные права на работе",
+    "questionsCount": 8,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "family-law-basics",
+    "title": "Как заключить брак",
+    "description": "Условия вступления в брак",
+    "questionsCount": 7,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "family-law-basics",
+    "title": "Права детей",
+    "description": "Основные права несовершеннолетних",
+    "questionsCount": 6,
+    "difficulty": "easy"
+  }
+]

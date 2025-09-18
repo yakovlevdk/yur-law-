@@ -1,0 +1,387 @@
+[
+  {
+    "subjectSlug": "civil-law",
+    "title": "Понятие и источники гражданского права",
+    "description": "Предмет, метод, принципы гражданского права",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Гражданские правоотношения",
+    "description": "Субъекты, объекты, содержание гражданских правоотношений",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Физические лица как субъекты гражданского права",
+    "description": "Правоспособность, дееспособность, опека, попечительство",
+    "questionsCount": 40,
+    "difficulty": "easy"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Юридические лица",
+    "description": "Понятие, виды, создание и прекращение юридических лиц",
+    "questionsCount": 45,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Объекты гражданских прав",
+    "description": "Вещи, работы, услуги, интеллектуальная собственность",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Сделки",
+    "description": "Понятие, виды, форма, недействительность сделок",
+    "questionsCount": 50,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Представительство и доверенность",
+    "description": "Понятие представительства, виды доверенности",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Сроки в гражданском праве",
+    "description": "Понятие, виды, исчисление сроков, исковая давность",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Право собственности",
+    "description": "Понятие, содержание, формы собственности",
+    "questionsCount": 45,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Обязательственное право",
+    "description": "Понятие обязательства, стороны, исполнение",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Договорное право",
+    "description": "Понятие договора, виды, заключение, изменение, расторжение",
+    "questionsCount": 55,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Гражданско-правовая ответственность",
+    "description": "Понятие, виды, условия наступления ответственности",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Наследственное право",
+    "description": "Наследование по закону и по завещанию",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Интеллектуальная собственность",
+    "description": "Авторское право, патентное право, товарные знаки",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "civil-law",
+    "title": "Защита гражданских прав",
+    "description": "Способы защиты, самозащита, судебная защита",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Понятие и признаки преступления",
+    "description": "Основные элементы состава преступления",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Состав преступления",
+    "description": "Объект, объективная сторона, субъект, субъективная сторона",
+    "questionsCount": 45,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Уголовная ответственность",
+    "description": "Основания и условия привлечения к уголовной ответственности",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Наказания в уголовном праве",
+    "description": "Виды и назначение уголовных наказаний",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против жизни и здоровья",
+    "description": "Убийство, причинение вреда здоровью",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против собственности",
+    "description": "Кража, грабеж, разбой, мошенничество",
+    "questionsCount": 40,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против общественной безопасности",
+    "description": "Терроризм, хулиганство, вандализм",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против государственной власти",
+    "description": "Взяточничество, злоупотребление должностными полномочиями",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против правосудия",
+    "description": "Воспрепятствование правосудию, заведомо ложные показания",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Преступления против семьи и несовершеннолетних",
+    "description": "Нарушение прав детей, жестокое обращение",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "criminal-law",
+    "title": "Экологические преступления",
+    "description": "Загрязнение окружающей среды, незаконная охота",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Основы конституционного строя",
+    "description": "Принципы и основы конституционного строя РФ",
+    "questionsCount": 35,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Права и свободы человека и гражданина",
+    "description": "Конституционные права и свободы граждан",
+    "questionsCount": 45,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Федеративное устройство России",
+    "description": "Принципы федеративного устройства России",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Президент Российской Федерации",
+    "description": "Статус, полномочия, порядок избрания Президента",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Федеральное Собрание",
+    "description": "Структура, полномочия, порядок формирования парламента",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Правительство Российской Федерации",
+    "description": "Состав, полномочия, порядок формирования Правительства",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Судебная власть",
+    "description": "Система судов, принципы правосудия",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Местное самоуправление",
+    "description": "Органы местного самоуправления, их полномочия",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "constitutional-law",
+    "title": "Конституционные поправки и пересмотр Конституции",
+    "description": "Порядок внесения изменений в Конституцию",
+    "questionsCount": 20,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Понятие и признаки государства",
+    "description": "Сущность государства, его основные признаки",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Функции государства",
+    "description": "Внутренние и внешние функции государства",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Формы государства",
+    "description": "Форма правления, форма государственного устройства, политический режим",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Понятие и признаки права",
+    "description": "Сущность права, его основные признаки",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Нормы права",
+    "description": "Структура нормы права, виды правовых норм",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Источники права",
+    "description": "Понятие и виды источников права",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Система права",
+    "description": "Отрасли права, институты права, система законодательства",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Правовые отношения",
+    "description": "Понятие, структура, виды правоотношений",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Правомерное поведение и правонарушения",
+    "description": "Понятие правомерного поведения, виды правонарушений",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "theory-of-state-and-law",
+    "title": "Юридическая ответственность",
+    "description": "Понятие, виды, принципы юридической ответственности",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Периодизация римского права",
+    "description": "Основные этапы развития римского права",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Источники римского права",
+    "description": "Законы XII таблиц, преторское право, императорские конституции",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Лица в римском праве",
+    "description": "Правовое положение физических и юридических лиц",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Вещное право",
+    "description": "Право собственности, владение, сервитуты",
+    "questionsCount": 40,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Обязательственное право",
+    "description": "Понятие обязательства, виды договоров",
+    "questionsCount": 35,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Наследственное право",
+    "description": "Наследование по закону и по завещанию",
+    "questionsCount": 30,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Семейное право",
+    "description": "Брак, отцовская власть, опека и попечительство",
+    "questionsCount": 25,
+    "difficulty": "medium"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Уголовное право",
+    "description": "Преступления и наказания в римском праве",
+    "questionsCount": 30,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Процессуальное право",
+    "description": "Легисакционный, формулярный и экстраординарный процессы",
+    "questionsCount": 25,
+    "difficulty": "hard"
+  },
+  {
+    "subjectSlug": "roman-law",
+    "title": "Влияние римского права на современное право",
+    "description": "Рецепция римского права, его значение для современности",
+    "questionsCount": 20,
+    "difficulty": "medium"
+  }
+]
